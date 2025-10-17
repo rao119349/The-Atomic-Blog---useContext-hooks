@@ -46,33 +46,35 @@ function App() {
 
   return (
     // 2) PROVIDE VALUE TO CHILD COMPONENTS
-    <PostContext.Provider value={{
-      posts: searchedPosts,
-      onAddPost: handleAddPost,
-      onClearPosts: handleClearPosts,
-      searchQuery,
-      setSearchQuery,
-    }}>
-    <section>
-      <button
-        onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
-        className="btn-fake-dark-mode"
-      >
-        {isFakeDark ? "☀️" : "🌙"}
-      </button>
+    <PostContext.Provider
+      value={{
+        posts: searchedPosts,
+        onAddPost: handleAddPost,
+        onClearPosts: handleClearPosts,
+        searchQuery,
+        setSearchQuery,
+      }}
+    >
+      <section>
+        <button
+          onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
+          className="btn-fake-dark-mode"
+        >
+          {isFakeDark ? "☀️" : "🌙"}
+        </button>
 
-      <Header/>
-      <Main />
-      <Archive />
-      <Footer />
-    </section>
+        <Header />
+        <Main />
+        <Archive />
+        <Footer />
+      </section>
     </PostContext.Provider>
   );
 }
 
 function Header() {
-  // 3) CONSUMING CONTEXT VALUE 
-  const {onClearPosts} = useContext(PostContext);
+  // 3) CONSUMING CONTEXT VALUE
+  const { onClearPosts } = useContext(PostContext);
 
   return (
     <header>
@@ -89,7 +91,7 @@ function Header() {
 }
 
 function SearchPosts() {
-  const {searchQuery,setSearchQuery} = useContext(PostContext);
+  const { searchQuery, setSearchQuery } = useContext(PostContext);
   return (
     <input
       value={searchQuery}
@@ -154,7 +156,7 @@ function FormAddPost() {
 
 function List() {
   const { posts } = useContext(PostContext);
-  
+
   return (
     <ul>
       {posts.map((post, i) => (
